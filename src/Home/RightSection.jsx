@@ -43,30 +43,30 @@ const RightSection = () => {
                             <SimpleDialogContainer />
                             <div>
                                 {
-                                    localStorage.getItem('user') ? 
-                                    <button style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        border: "solid grey",
-                                        borderWidth: "0.2 em",
-                                        width: "100%",
-                                        padding: "1vh 1vw"
-                                    }} onClick={() => { navigate("/create/community") }}>Create Community</button>
+                                    localStorage.getItem('user') ?
+                                        <button style={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            border: "solid grey",
+                                            borderWidth: "0.2 em",
+                                            width: "100%",
+                                            padding: "1vh 1vw"
+                                        }} onClick={() => { navigate("/create/community") }}>Create Community</button>
 
-                                    : 
+                                        :
 
-                                    <button style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        border: "solid grey",
-                                        borderWidth: "0.2 em",
-                                        width: "100%",
-                                        padding: "1vh 1vw"
-                                    }} onClick={alert}>Create Community</button>
+                                        <button style={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            border: "solid grey",
+                                            borderWidth: "0.2 em",
+                                            width: "100%",
+                                            padding: "1vh 1vw"
+                                        }} onClick={alert}>Create Community</button>
                                 }
-                                
+
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ const RightSection = () => {
                                         if (com.name) {
                                             return (
                                                 <span key={key}>
-                                                    <div class="flex" style={{padding : "2vh", cursor : "pointer"}} onClick={()=>{navigate("/community", { state: { communityId : com.id } });}}>
+                                                    <div class="flex" style={{ padding: "2vh", cursor: "pointer" }} onClick={() => { navigate("/community", { state: { communityId: com.id } }); }}>
                                                         <img class="h-8 w-8 border rounded-full mr-2" src="https://avatars0.githubusercontent.com/u/30317862?s=200&v=4" />
                                                         <div class="flex flex-col font-medium">
                                                             <a href="#" class="text-xs text-black-alt no-underline leading-tight"> {com.name}</a>

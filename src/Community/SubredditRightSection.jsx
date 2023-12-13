@@ -1,19 +1,23 @@
 import React, { useRef } from "react";
 import PostModal from "../Home/PostModal";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import api from "../api";
 const SubredditRightSection = () => {
-
-  // const state = useLocation()
-  // console.log(state)
-  // const communityId = state.state.communityId
-  // useEffect(() => {
-  //   api.get(`/subreddit/get${communityId}`)
-  //     .then((res) => { console.log(res); setPosts(res.data) })
-  //     .catch((err) => console.log(err))
-  // }, [])
+  const [community, setCommunity] = useState({})
+  const state = useLocation()
+  
+  const communityId = state.state.communityId
+  useEffect(() => {
+    api.get(`/subreddit/get${communityId}`)
+      .then((res) => { console.log("api response ",res); setCommunity(res.data) })
+      .catch((err) => console.log(err))
+  }, [])
 
 
   return (
     <div className="w-1/3 ml-5">
+
       <div className="py-2">
         <div className="rounded bg-white mb-4">
           <div className="p-3">
@@ -24,7 +28,7 @@ const SubredditRightSection = () => {
             <div>
               <div className="inline-flex items-center">
                 <img src="https://www.redditstatic.com/desktop2x/img/id-cards/snoo-home@2x.png" className="h-16" />
-                <span className="text-lg ml-4 mt-6">r/popular</span>
+                <span className="text-lg ml-4 mt-6">{community.name}</span>
               </div>
               <p className="font-normal mb-3 text-sm leading-normal">The best posts on Reddit for you, pulled from the most active communities on Reddit. Check here to see the most shared, upvoted, and commented content on the internet.</p>
               <button className="bg-blue-500 text-white text-sm font-semibold rounded px-4 py-2 w-full">JOIN</button>
@@ -35,51 +39,26 @@ const SubredditRightSection = () => {
             </div>
           </div>
         </div>
-        <div className="rounded bg-white mb-4">
-          <div className="p-2">
-            {/* Existing tags/flairs */}
-          </div>
-        </div>
-        <div className="rounded bg-white mb-4">
-          <div className="p-3 text-xxs font-semibold w-full">COMMUNITY FLAIRS</div>
-          <div>
-            {/* Existing tags/flairs */}
-            <div>
-              <div
-                class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full"
-              >
+      </div>
+      <div className="rounded bg-white mb-4">
+        <div className="p-3 text-xxs font-semibold w-full">COMMUNITY FLAIRS</div>
+        <div>
+          {/* Existing tags/flairs */}
+          {/* <div>
+            {
+              community.flairs.split(",").map((flair, key) => {
+                <div
+                  class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full"
+                >
+                  {flair}
+                </div>
+              })
+            }
 
-                Tag
-              </div>
-
-              <div
-                class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full"
-              >
-
-                Tag
-              </div>
-
-              <div
-                class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-orange-200 text-orange-700 rounded-full"
-              >
-
-                Tag
-              </div>
-
-              <div
-                class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-red-200 text-red-700 rounded-full"
-              >
-
-                Tag
-              </div>
-
-              <div
-                class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border"
-              >
-                Tag
-              </div>
-            </div>
-          </div>
+          </div> */}
+          {
+            console.log(";communtiity ",community)
+          }
         </div>
         <div className="rounded bg-white mb-4">
           <div className="p-4">
@@ -100,7 +79,7 @@ const SubredditRightSection = () => {
 
         </div>
 
-      </div>
+    </div>
     </div>
   );
 };
